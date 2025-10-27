@@ -2,26 +2,40 @@ document.addEventListener('DOMContentLoaded', () => {
     const getSumBtn = document.createElement("button");
     getSumBtn.append("Get Total Price");
     document.body.appendChild(getSumBtn);
+    getSumBtn.addEventListener('click', getSum);
+
+});
 
 const getSum = () => {
-    console.log("getSum function called"); // Add this line
+
     const priceElements = document.querySelectorAll('.price');
+    
     let total = 0;
-    priceElements.forEach(el => {
-        total += Number(el.textContent.replace(/[^0-9.-]/g, ""));
+
+   
+    priceElements.forEach(priceElement => {
+        
+        const priceText = priceElement.textContent;
+        
+        total += +priceText;
     });
 
-        const table = document.querySelector('table');
-        let totalRow = document.getElementById('totalRow');
-        if (totalRow) totalRow.remove(); // Remove previous, if exists
-        totalRow = document.createElement('tr');
-        totalRow.id = 'totalRow';
-        const totalCell = document.createElement('td');
-        totalCell.textContent = `Total Price: ${total}`; // Use backticks
-        totalCell.colSpan = priceElements.length > 0 ? priceElements[0].parentElement.children.length : 1;
-        totalRow.appendChild(totalCell);
-        table.appendChild(totalRow);
-    };
+    const table = document.querySelector('table');
 
-    getSumBtn.addEventListener("click", getSum);
-});
+    if (document.querySelector('#total-row')) {
+      
+        document.querySelector('#total-value').textContent = total;
+        return;
+    }
+
+    const newRow = document.createElement('tr');
+    newRow.id = 'total-row'; 
+    const totalCell = document.createElement('td');
+    totalCell.setAttribute('colspan', '2'); 
+    
+    totalCell.innerHTML = **Total Price: $<span id="total-value">${total}</span>**;
+  
+    newRow.appendChild(totalCell);
+    
+    table.appendChild(newRow);
+};
