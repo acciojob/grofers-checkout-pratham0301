@@ -24,7 +24,7 @@ const getSum = () => {
     totalRow.appendChild(totalCell);
     table.appendChild(totalRow);
 };
-};
+
 
 getSumBtn.addEventListener("click", getSum);
 
