@@ -3,12 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     getSumBtn.append("Get Total Price");
     document.body.appendChild(getSumBtn);
 
-    const getSum = () => {
-        const priceElements = document.querySelectorAll('.price'); // Change to .price
-        let total = 0;
-        priceElements.forEach(el => {
-            total += Number(el.textContent.replace(/[^0-9.-]/g, ""));
-        });
+const getSum = () => {
+    console.log("getSum function called"); // Add this line
+    const priceElements = document.querySelectorAll('.price');
+    let total = 0;
+    priceElements.forEach(el => {
+        total += Number(el.textContent.replace(/[^0-9.-]/g, ""));
+    });
 
         const table = document.querySelector('table');
         let totalRow = document.getElementById('totalRow');
